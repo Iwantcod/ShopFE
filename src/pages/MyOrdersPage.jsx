@@ -1,0 +1,1 @@
+export { default } from './OrdersPage'; // 기존 구현 재사용
