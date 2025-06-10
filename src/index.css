@@ -1,0 +1,26 @@
+/* 0) Tailwind 레이어 – 그대로 유지 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1) 전역 기본값 – 밝은 톤 */
+body {
+  @apply min-h-screen w-full bg-stone-50 text-slate-800 antialiased;
+  /* margin:0 는 Tailwind Preflight가 이미 적용 */
+}
+
+/* 2) 다크모드 */
+.dark body {
+  @apply bg-gray-900 text-slate-200;
+}
+
+/* 3) 전역 링크 스타일 (우리 primary 컬러 사용) */
+a {
+  @apply font-medium text-primary hover:text-primary-dark;
+}
+
+/* 4) 버튼 기본(리셋) – 실제 버튼 컴포넌트에 Tailwind 클래스로 일관 적용 */
+button {
+  font: inherit;            /* 모든 폰트 관련 속성 상속 */
+  @apply focus:outline-none;
+}
