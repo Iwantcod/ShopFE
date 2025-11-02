@@ -1,0 +1,9 @@
+{
+  "env": {
+    "k6": true,
+    "es6": true
+  },
+  "parserOptions": { "sourceType": "module" },
+  "plugins": ["k6"],
+  "extends": ["plugin:k6/recommended"]
+}

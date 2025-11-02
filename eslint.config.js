@@ -19,9 +19,15 @@ export default [
       react: { version: "detect" },
     },
     languageOptions: {
+<<<<<<< HEAD
       parserOptions: { 
         ecmaFeatures: { jsx: true },
         "sourceType": "module"
+=======
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+        sourceType: "module",
+>>>>>>> temp-rebased
       },
       globals: {
         React: "writable",
@@ -46,6 +52,7 @@ export default [
     },
   },
   {
+<<<<<<< HEAD
     // 테스트 파일(.test.js, .spec.js) 전용 설정
     files: ['**/*.test.{js,jsx}', '**/*.spec.{js,jsx}'],
     env: { 
@@ -53,4 +60,12 @@ export default [
      },        // test / expect / vi 전역 허용
   },
   prettier, // 항상 마지막
+=======
+    files: ["**/*.test.{js,jsx}", "**/*.spec.{js,jsx}"],
+    env: {
+      vitest: true,
+    },
+  },
+  prettier,
+>>>>>>> temp-rebased
 ];
