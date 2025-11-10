@@ -25,7 +25,6 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import CategoryTable from './pages/admin/CategoryTable';
 import SpecTable from './pages/admin/SpecTable';
-import SellerApproval from './pages/admin/SellerApproval';
 import AdminProductTable from './pages/admin/AdminProductTable';
 
 export default function App() {
@@ -84,7 +83,6 @@ export default function App() {
                 <Route index                element={<AdminDashboardHome />} />
                 <Route path="categories"    element={<CategoryTable />} />
                 <Route path="specs"         element={<SpecTable />} />
-                <Route path="seller-approval" element={<SellerApproval />} />
                 <Route path="products"     element={<AdminProductTable />} />
               </Route>
             </Route>

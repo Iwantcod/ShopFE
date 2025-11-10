@@ -3,11 +3,26 @@ import PropTypes from 'prop-types';
 
 /**
  * current   현재 페이지(0‑based)
+ * page      하위 호환 alias (0‑based)
  * maxPage   마지막 페이지(0‑based, Infinity 가능)
  * onChange  (page:number) → 부모 컴포넌트에서 URL 파라미터 & RTK Query 호출 담당
  * disabled  전체 버튼 비활성
  */
-export default function Pagination({ current, maxPage = Infinity, onChange, disabled }) {
+export default function Pagination({
+  current,
+  page,
+  maxPage = Infinity,
+  onChange,
+  disabled,
+}) {
+  /* current prop 우선 사용, legacy page prop 보조 */
+  const legacyPage = Number(page);
+  const resolvedCurrent = Number.isFinite(current)
+    ? current
+    : Number.isFinite(legacyPage)
+      ? legacyPage
+      : 0;
+
   /* page 범위를 0~maxPage 로 한정 */
   const clamp = (p) => Math.max(0, Math.min(maxPage, p));
   const go     = (p) => !disabled && onChange(clamp(p));
@@ -24,8 +39,8 @@ export default function Pagination({ current, maxPage = Infinity, onChange, disa
       <button
         className={`${baseBtn} ${hoverCls} ${disableCls}`}
         aria-label="10페이지 뒤로"
-        onClick={() => go(current - 10)}
-        disabled={disabled || current === 0}
+        onClick={() => go(resolvedCurrent - 10)}
+        disabled={disabled || resolvedCurrent === 0}
       >
         «
       </button>
@@ -34,23 +49,23 @@ export default function Pagination({ current, maxPage = Infinity, onChange, disa
       <button
         className={`${baseBtn} ${hoverCls} ${disableCls}`}
         aria-label="1페이지 뒤로"
-        onClick={() => go(current - 1)}
-        disabled={disabled || current === 0}
+        onClick={() => go(resolvedCurrent - 1)}
+        disabled={disabled || resolvedCurrent === 0}
       >
         ‹
       </button>
 
       {/* 현재 페이지 표시 */}
       <span className="inline-flex h-8 min-w-[40px] items-center justify-center rounded-lg bg-primary px-2 text-white">
-        {current + 1}
+        {resolvedCurrent + 1}
       </span>
 
       {/* 1 페이지 앞으로 > */}
       <button
         className={`${baseBtn} ${hoverCls} ${disableCls}`}
         aria-label="1페이지 앞으로"
-        onClick={() => go(current + 1)}
-        disabled={disabled || current >= maxPage}
+        onClick={() => go(resolvedCurrent + 1)}
+        disabled={disabled || resolvedCurrent >= maxPage}
       >
         ›
       </button>
@@ -59,8 +74,8 @@ export default function Pagination({ current, maxPage = Infinity, onChange, disa
       <button
         className={`${baseBtn} ${hoverCls} ${disableCls}`}
         aria-label="10페이지 앞으로"
-        onClick={() => go(current + 10)}
-        disabled={disabled || current >= maxPage}
+        onClick={() => go(resolvedCurrent + 10)}
+        disabled={disabled || resolvedCurrent >= maxPage}
       >
         »
       </button>
@@ -69,7 +84,8 @@ export default function Pagination({ current, maxPage = Infinity, onChange, disa
 }
 
 Pagination.propTypes = {
-  current: PropTypes.number.isRequired,
+  current: PropTypes.number,
+  page: PropTypes.number,
   maxPage: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

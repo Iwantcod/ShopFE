@@ -34,6 +34,10 @@ const {
 
   if (isLoading) return <SkeletonTable rows={10} />;
 
+  const list = Array.isArray(products.items) ? products.items : products;
+  const hasNext = Array.isArray(list) && list.length === 10;
+  const maxPage = hasNext ? Infinity : page;
+
   return (
     <>
       <h1 className="mb-4 text-xl font-semibold">전체 상품 목록</h1>
@@ -42,7 +46,7 @@ const {
 
       <DataTable
         columns={columns}
-        data={products}
+        data={list}
         /* 수정 아이콘 X, 삭제만 가능 */
         onDelete={async (row) => {
           try {
@@ -54,11 +58,7 @@ const {
         }}
       />
 
-      <Pagination
-        page={page}
-        onChange={setPage}
-        disabled={products.length < 10}
-      />
+      <Pagination current={page} maxPage={maxPage} onChange={setPage} disabled={false} />
     </>
   );
 }
