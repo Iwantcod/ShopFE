@@ -27,7 +27,17 @@ export const cartApi = createApi({
        ② GET /api/cart/my  →  useMyQuery
        ---------------------------------------------------------------- */
     my: b.query({
-      query: () => '/api/cart/my',
+      async queryFn(_arg, _api, _extra, baseQuery) {
+        const result = await baseQuery('/api/cart/my');
+        if (result.error) {
+          const status = result.error.status ?? result.error.originalStatus;
+          if (status === 404) {
+            return { data: [] };
+          }
+          return { error: result.error };
+        }
+        return { data: result.data ?? [] };
+      },
       providesTags: ['Cart'],
     }),
 

@@ -1,7 +1,7 @@
 // src/pages/orders/OrdersPage.jsx
 import { useState } from 'react';
 
-import { useMyOrdersQuery } from '../features/api/orderApi';
+import { useMyOrdersQuery, useCancelMutation } from '../features/api/orderApi';
 import Button from '../ui/core/Button';
 import BenchmarkSelectModal from '../components/BenchmarkSelectModal';
 import BenchmarkResultModal from '../components/BenchmarkResultModal';
@@ -25,6 +25,7 @@ const fmt = (iso) =>
 
 export default function OrdersPage() {
   const { data = [], isFetching } = useMyOrdersQuery();
+  const [cancelOrder] = useCancelMutation();
   const [detailId, setDetailId]       = useState(null);
   const [openSelect, setOpenSelect]   = useState(false);
   const [benchParams, setBenchParams] = useState(null);
@@ -84,7 +85,13 @@ export default function OrdersPage() {
                   <Button
                     size="xs"
                     className="bg-red-100 px-4 py-1 text-red-600 hover:bg-red-200"
-                    onClick={() => {/* cancel mutation 호출 */}}
+                    onClick={async () => {
+                      try {
+                        await cancelOrder(o.orderId).unwrap();
+                      } catch {
+                        // TODO: toast 연동 시 에러 안내
+                      }
+                    }}
                   >
                     취소
                   </Button>

@@ -15,7 +15,7 @@ import useToast from '../ui/feedback/useToast';
 import { openBenchmarkWindow } from '../lib/openBenchmarkWindow';
 
 export default function CartPage() {
-  const { data: items = [], isLoading } = useMyQuery();
+  const { data: items = [], isLoading, error } = useMyQuery();
   const [upCart] = useUpMutation();
   const [downCart] = useDownMutation();
   const [removeCart] = useRemoveMutation();
@@ -35,6 +35,17 @@ export default function CartPage() {
 
   if (isLoading) {
     return <p className="p-8 text-center">Loading…</p>;
+  }
+
+  if (error) {
+    const status = error.status ?? error.originalStatus;
+    if (status !== 404) {
+      return (
+        <p className="p-8 text-center text-gray-500">
+          장바구니에 담긴 상품이 없습니다.
+        </p>
+      );
+    }
   }
 
   const total = items.reduce((sum, c) => sum + c.price * c.quantity, 0);
@@ -103,6 +114,19 @@ export default function CartPage() {
     }
   };
 
+  const handleRemove = async (cartId) => {
+    try {
+      await removeCart(cartId).unwrap();
+    } catch (err) {
+      const status = err?.status ?? err?.originalStatus;
+      if (status === 404) {
+        toast.push('장바구니가 비어 있습니다.', 'error');
+      } else {
+        toast.push('삭제에 실패했습니다.', 'error');
+      }
+    }
+  };
+
   return (
     <section className="space-y-6 p-4">
       <h1 className="text-xl font-semibold">장바구니</h1>
@@ -143,7 +167,7 @@ export default function CartPage() {
                 <td>{(c.price * c.quantity).toLocaleString()}원</td>
                 <td>
                   <button
-                    onClick={() => removeCart(c.cartId)}
+                    onClick={() => handleRemove(c.cartId)}
                     className="text-red-600 hover:underline"
                   >
                     삭제
