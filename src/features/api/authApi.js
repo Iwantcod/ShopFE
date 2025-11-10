@@ -53,6 +53,15 @@ export const authApi = createApi({
       }),
     }),
 
+    /* POST /api/auth/join-complete */
+    joinComplete: b.mutation({
+      query: (formData) => ({
+        url: '/api/auth/join-complete',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+
     /* GET /api/auth/dup-email/{email} */
     checkEmailDup: b.query({
       query: (email) => `/api/auth/dup-email/${encodeURIComponent(email)}`,
@@ -71,6 +80,7 @@ export const {
   useLogoutMutation,
   useJoinMutation,
   useJoinSellerMutation,
+  useJoinCompleteMutation,
   useLazyCheckEmailDupQuery,
   useLazyCheckUsernameDupQuery,
 } = authApi;

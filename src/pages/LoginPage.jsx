@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useLoginMutation } from '../features/api/authApi';
+import { API_URL } from '../config';
 
 export default function LoginPage() {
   const formRef = useRef(null);
@@ -66,13 +67,10 @@ export default function LoginPage() {
         </button>
         <button
           type="button"
-          onClick={() =>
-            window.open(
-              '/oauth2/authorization/google', // 추후 수정: 현재 oauth2 페이지를 api 요청하는 것이 아니라 단순 페이지 전환만 하도록 되어있음. https://www.andypjt.site/oauth2/authorization/google
-              '_blank',
-              'width=500,height=600',
-            )
-          }
+          onClick={() => {
+            const target = `${API_URL}/oauth2/authorization/google`;
+            window.location.assign(target);
+          }}
           className="w-full rounded bg-red-500 py-2 font-medium text-white hover:bg-red-600"
         >
           구글 계정으로 로그인
