@@ -45,3 +45,6 @@ export const {
   useSearchByNameQuery,
   useListBySellerQuery,
 } = productApi;
+
+export const useLazyGetProductByIdQuery =
+  productApi.endpoints.getProductById.useLazyQuery;

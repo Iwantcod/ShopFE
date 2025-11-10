@@ -34,7 +34,43 @@ export const authApi = createApi({
         dispatch(setRole(null));
       },
     }),
+
+    /* POST /api/auth/join */
+    join: b.mutation({
+      query: (formData) => ({
+        url: '/api/auth/join',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+
+    /* POST /api/auth/join/seller */
+    joinSeller: b.mutation({
+      query: (formData) => ({
+        url: '/api/auth/join/seller',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+
+    /* GET /api/auth/dup-email/{email} */
+    checkEmailDup: b.query({
+      query: (email) => `/api/auth/dup-email/${encodeURIComponent(email)}`,
+    }),
+
+    /* GET /api/auth/dup-username/{username} */
+    checkUsernameDup: b.query({
+      query: (username) =>
+        `/api/auth/dup-username/${encodeURIComponent(username)}`,
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = authApi;
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useJoinMutation,
+  useJoinSellerMutation,
+  useLazyCheckEmailDupQuery,
+  useLazyCheckUsernameDupQuery,
+} = authApi;

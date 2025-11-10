@@ -28,6 +28,7 @@ import { sellerApi }  from '../features/api/sellerApi';
 import { adminApi }   from '../features/api/adminApi';
 import { categoryApi } from '../features/api/categoryApi';
 import { benchmarkApi } from '../features/api/benchmarkApi';
+import { recommendApi } from '../features/api/recommendApi';
 
 /* 1) root reducer 정의 */
 const rootReducer = combineReducers({
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   [adminApi.reducerPath]:   adminApi.reducer,
   [categoryApi.reducerPath]: categoryApi.reducer,
   [benchmarkApi.reducerPath]: benchmarkApi.reducer,
+  [recommendApi.reducerPath]: recommendApi.reducer,
 });
 
 /* 2) redux-persist 설정 */
@@ -78,6 +80,7 @@ export const store = configureStore({
       adminApi.middleware,
       categoryApi.middleware,
       benchmarkApi.middleware,
+      recommendApi.middleware,
     ),
 });
 

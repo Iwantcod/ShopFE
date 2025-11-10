@@ -4,6 +4,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import importPlugin from "eslint-plugin-import";
 import tailwindcss from "eslint-plugin-tailwindcss";
 import prettier from "eslint-config-prettier";
+import globals from "globals";
 
 export default [
   js.configs.recommended,
@@ -19,20 +20,13 @@ export default [
       react: { version: "detect" },
     },
     languageOptions: {
-<<<<<<< HEAD
-      parserOptions: { 
-        ecmaFeatures: { jsx: true },
-        "sourceType": "module"
-=======
       parserOptions: {
         ecmaFeatures: { jsx: true },
         sourceType: "module",
->>>>>>> temp-rebased
       },
       globals: {
+        ...globals.browser,
         React: "writable",
-        document: "readonly",
-        window: "readonly",
       },
     },
     rules: {
@@ -52,20 +46,12 @@ export default [
     },
   },
   {
-<<<<<<< HEAD
-    // 테스트 파일(.test.js, .spec.js) 전용 설정
-    files: ['**/*.test.{js,jsx}', '**/*.spec.{js,jsx}'],
-    env: { 
-      vitest: true
-     },        // test / expect / vi 전역 허용
-  },
-  prettier, // 항상 마지막
-=======
     files: ["**/*.test.{js,jsx}", "**/*.spec.{js,jsx}"],
-    env: {
-      vitest: true,
+    languageOptions: {
+      globals: {
+        ...globals.vitest,
+      },
     },
   },
   prettier,
->>>>>>> temp-rebased
 ];

@@ -45,3 +45,5 @@ export const benchmarkApi = createApi({
 });
 
 export const { useGetBenchMarkQuery } = benchmarkApi;
+export const useLazyGetBenchMarkQuery =
+  benchmarkApi.endpoints.getBenchMark.useLazyQuery;

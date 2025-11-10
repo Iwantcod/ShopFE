@@ -3,6 +3,7 @@ export default function Button({
   children,
   variant = 'primary',
   size = 'md',
+  className = '',
   ...props
 }) {
   const base =
@@ -25,7 +26,7 @@ export default function Button({
 
   return (
     <button
-      className={`${base} ${variants[variant]} ${sizes[size]}`}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`.trim()}
       {...props}
     >
       {children}
