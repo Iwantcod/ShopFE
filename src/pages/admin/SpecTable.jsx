@@ -108,7 +108,7 @@ export default function SpecTable() {
               specs.map((spec) => (
                 <details key={spec.id ?? spec.specId ?? Math.random()} className="p-4">
                   <summary className="cursor-pointer text-sm font-semibold text-gray-800">
-                    {spec.specName ?? spec.id ?? '스펙'}
+                    {spec.modelName ?? spec.specName ?? spec.id ?? '스펙'}
                   </summary>
                   <pre className="mt-2 overflow-auto rounded bg-gray-50 p-3 text-xs text-gray-700">
                     {JSON.stringify(spec, null, 2)}
