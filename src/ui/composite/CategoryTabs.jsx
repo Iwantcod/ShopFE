@@ -6,7 +6,7 @@ import { CATEGORIES } from '../../constants/categories';
 
 export default function CategoryTabs({ active, onChange }) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2">
+    <div className="flex justify-center gap-2 overflow-x-auto pb-2">
       {CATEGORIES.map((c) => (
         <button
           key={c.key}

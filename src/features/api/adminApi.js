@@ -7,7 +7,7 @@ import toFormData from '../../lib/toFormData';
 export const adminApi = createApi({
   reducerPath: 'adminApi',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Category', 'Spec', 'SellerApproval'],
+  tagTypes: ['Category', 'Spec', 'SellerApproval', 'AdminProduct'],
   endpoints: (b) => ({
     /* ───────── 전체 상품 최신순 조회 ───────── */
    allProducts: b.query({
@@ -113,7 +113,4 @@ export const {
   useSpecListQuery,
   useAddSpecMutation,
   useUpdateSpecMutation,
-  useSellerApprovalListQuery,
-  useApproveSellerMutation,
-  useDisapproveSellerMutation,
 } = adminApi;

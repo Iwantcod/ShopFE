@@ -10,9 +10,6 @@ import ProductListPage from './pages/ProductListPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import MyPageLayout from './pages/mypage/MyPageLayout';
 import CartPage from './pages/CartPage';
-import JoinPage from './pages/JoinPage';
-import JoinSellerPage from './pages/JoinSellerPage';
-import JoinCompletePage from './pages/JoinCompletePage';
 import OrderFormPage from './pages/OrderFormPage';
 import OrderConfirmPage from './pages/OrderConfirmPage';
 import OrdersPage from './pages/OrdersPage';
@@ -28,7 +25,6 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboardHome from './pages/admin/AdminDashboardHome';
 import CategoryTable from './pages/admin/CategoryTable';
 import SpecTable from './pages/admin/SpecTable';
-import SellerApproval from './pages/admin/SellerApproval';
 import AdminProductTable from './pages/admin/AdminProductTable';
 
 export default function App() {
@@ -87,7 +83,6 @@ export default function App() {
                 <Route index                element={<AdminDashboardHome />} />
                 <Route path="categories"    element={<CategoryTable />} />
                 <Route path="specs"         element={<SpecTable />} />
-                <Route path="seller-approval" element={<SellerApproval />} />
                 <Route path="products"     element={<AdminProductTable />} />
               </Route>
             </Route>

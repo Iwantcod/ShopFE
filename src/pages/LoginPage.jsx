@@ -59,7 +59,7 @@ export default function LoginPage() {
         <div className="text-center text-sm text-gray-500">또는</div>
         <button
           type="button"
-          onClick={() => navigate('/auth/join')}
+          onClick={() => navigate('/auth/join/type')}
           className="w-full rounded border py-2 font-medium hover:bg-stone-100"
         >
           회원가입

@@ -4,12 +4,14 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import JoinPage from './JoinPage';
 import JoinSellerPage from './JoinSellerPage';
 import JoinCompletePage from './JoinCompletePage';
+import JoinTypePage from './JoinTypePage';
 
 export default function AuthJoinRoutes() {
   return (
     <Routes>
-      <Route index element={<Navigate to="join" replace />} />
-      <Route path="join" element={<JoinPage />} />
+      <Route index element={<Navigate to="type" replace />} />
+      <Route path="join/type" element={<JoinTypePage />} />
+      <Route path="join/user" element={<JoinPage />} />
       <Route path="join/seller" element={<JoinSellerPage />} />
       <Route path="complete" element={<JoinCompletePage />} />
     </Routes>

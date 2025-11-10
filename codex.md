@@ -42,6 +42,8 @@
 - Shared UI layout (`src/ui/composite/PageLayout.jsx`) provides top bar, footer, and content outlet.
 - Toast/Dialog contexts wrap router to enable global feedback components.
 - Business logic sits inside pages/components; cross-cutting concerns (auth, API) live in `src/features` and `src/lib`.
+- `CustomEstimateModal` (`src/components/CustomEstimateModal.jsx`) handles usage·예산 기반 추천 견적, 벤치마크 새 창 출력, 장바구니 일괄 추가 흐름을 `ProductListPage`와 연동.
+- 회원 가입 라우트는 `/auth/join/type`에서 유형을 선택하고, 일반(`src/pages/JoinPage.jsx`)·판매자(`src/pages/JoinSellerPage.jsx`) 폼으로 분기한다.
 
 ## 6. State Management & Data Layer
 
@@ -55,6 +57,7 @@
 - `ProtectedRoute` (`src/routes/ProtectedRoute.jsx`) checks `auth.role`; redirects unauthenticated users to `/auth/login`.
 - Seller/admin areas use `requiredRole` to gate nested routes (`src/App.jsx`).
 - Default route redirects to `/products/cpu`; fallback sends unknown paths to `/`.
+- `ProtectedRoute`는 `requiredRole` 배열을 지원하며, `VITE_BYPASS_AUTH=true`로 개발 중 인증 우회를 허용한다.
 
 ## 8. UI & Styling Guidelines
 
@@ -77,6 +80,8 @@
 - Seller APIs handle product CRUD with multipart form data (`toFormData` helper).
 - Admin APIs manage categories/specs/seller approval.
 - Follow tag-based cache invalidation rules defined per API slice.
+- 맞춤 견적: `GET /api/recommended-usage/all`로 용도 목록, `GET /api/product/recommend/{usageId}/{budget}`로 추천, `GET /api/benchmark`로 벤치마크 확인.
+- 회원가입: `POST /api/auth/join`, `POST /api/auth/join/seller`, `GET /api/auth/dup-email/{email}`, `GET /api/auth/dup-username/{username}`를 활용한다.
 
 ## 11. Testing Strategy
 

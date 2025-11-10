@@ -12,7 +12,7 @@ import Pagination from '../../ui/composite/Pagination';
 export default function ProductTable() {
   const { userId } = useSelector((s) => s.auth);
   const [page, setPage] = useState(0);
-  const { data = [], isLoading } = useMyProductsQuery({ userId, page });
+  const { data = [], isLoading } = useMyProductsQuery({ userId, offset: page * 10 });
   const [offProduct] = useOffProductMutation();
 
   const columns = [
