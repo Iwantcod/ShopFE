@@ -10,9 +10,9 @@ export default function AuthJoinRoutes() {
   return (
     <Routes>
       <Route index element={<Navigate to="type" replace />} />
-      <Route path="type" element={<JoinTypePage />} />
-      <Route path="user" element={<JoinPage />} />
-      <Route path="seller" element={<JoinSellerPage />} />
+      <Route path="join/type" element={<JoinTypePage />} />
+      <Route path="join/user" element={<JoinPage />} />
+      <Route path="join/seller" element={<JoinSellerPage />} />
       <Route path="complete" element={<JoinCompletePage />} />
     </Routes>
   );
