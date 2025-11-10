@@ -41,9 +41,16 @@ export default function CartPage() {
     const status = error.status ?? error.originalStatus;
     if (status !== 404) {
       return (
-        <p className="p-8 text-center text-gray-500">
-          장바구니에 담긴 상품이 없습니다.
-        </p>
+        <div className="space-y-4 p-8 text-center text-gray-500">
+          <p>장바구니에 담긴 상품이 없습니다.</p>
+          <button
+            type="button"
+            className="rounded bg-primary px-3 py-1.5 text-xs text-white"
+            onClick={() => navigate('/')}
+          >
+            둘러보러 가기
+          </button>
+        </div>
       );
     }
   }
