@@ -12,10 +12,10 @@ export default function CategoryTabs({ active, onChange }) {
           key={c.key}
           onClick={() => onChange(c.key)}
           className={
-            'rounded px-3 py-1 text-sm ' +
+            'rounded px-3 py-1 text-sm transition ' +
             (active === c.key
-              ? 'bg-primary text-white'
-              : 'bg-stone-100 hover:bg-stone-200')
+              ? 'bg-[#f4cfa7] text-[#4a3425]'
+              : 'bg-white/70 text-[#6d5a4c] hover:bg-[#f8efe3]')
           }
         >
           {c.label}

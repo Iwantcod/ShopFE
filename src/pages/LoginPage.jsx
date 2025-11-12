@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Button from '../ui/core/Button';
 import { useLoginMutation } from '../features/api/authApi';
 import { API_URL } from '../config';
 
@@ -11,12 +12,10 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    /* HTMLFormElement → FormData */
     const formData = new FormData(formRef.current);
 
     try {
-      await login(formData).unwrap();      // ← 그대로 전달
+      await login(formData).unwrap();
       navigate('/products/cpu', { replace: true });
     } catch {
       alert('아이디/비밀번호를 확인하세요');
@@ -24,58 +23,86 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-6">
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="w-full max-w-sm space-y-4 rounded bg-white p-8 shadow-card"
-      >
-        <h1 className="text-center text-xl font-semibold">로그인</h1>
-
-        {/* name 속성이 중요합니다 */}
-        <input
-          name="email"
-          type="email"
-          placeholder="이메일"
-          required
-          className="w-full rounded border px-3 py-2 ring-1 ring-stone-200 focus:ring-primary"
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="비밀번호"
-          required
-          className="w-full rounded border px-3 py-2 ring-1 ring-stone-200 focus:ring-primary"
-        />
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full rounded bg-primary py-2 font-medium text-white hover:bg-primary-dark"
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/3 top-0 h-72 w-72 rounded-full bg-white/70 blur-[140px]" />
+        <div className="absolute right-10 top-8 h-80 w-80 rounded-full bg-[#f8e4cc] blur-[150px]" />
+      </div>
+      <div className="relative z-10 grid w-full max-w-6xl gap-12 lg:grid-cols-[1.1fr_420px]">
+        <section className="hidden flex-col justify-center rounded-3xl bg-white/40 p-10 lg:flex">
+          <p className="text-sm uppercase tracking-[0.3em] text-[#b4855b]">Welcome back</p>
+          <h1 className="mt-4 text-4xl font-semibold leading-tight text-[#3f2f23]">
+            당신의 컴퓨터 쇼핑을
+            <br />
+            한 단계 더 매끄럽게.
+          </h1>
+          <p className="mt-6 text-lg text-[#6f594a]">
+            최신 컴포넌트부터 맞춤 견적까지, 단 하나의 대시보드에서 바로 확인하세요. 깔끔한
+            인터페이스와 속도감 있는 경험을 제공합니다.
+          </p>
+        </section>
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="w-full rounded-3xl border border-[rgba(223,200,173,0.45)] bg-white/85 p-8 backdrop-blur"
         >
-          {isLoading ? '로그인 중…' : '로그인'}
-        </button>
+          <div className="space-y-2 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#b4855b]">
+              Sign in
+            </p>
+            <h2 className="text-2xl font-semibold text-[#3d2e24]">계정으로 로그인</h2>
+            <p className="text-sm text-[#826f60]">등록된 이메일과 비밀번호를 입력하세요.</p>
+          </div>
 
-        {/* 하단 추가 버튼들 */}
-        <div className="text-center text-sm text-gray-500">또는</div>
-        <button
-          type="button"
-          onClick={() => navigate('/auth/join/type')}
-          className="w-full rounded border py-2 font-medium hover:bg-stone-100"
-        >
-          회원가입
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            const target = `${API_URL}/oauth2/authorization/google`;
-            window.location.assign(target);
-          }}
-          className="w-full rounded bg-red-500 py-2 font-medium text-white hover:bg-red-600"
-        >
-          구글 계정으로 로그인
-        </button>
-      </form>
+          <div className="mt-8 space-y-4">
+            <label className="space-y-2 text-sm text-[#5a4c40]">
+              <span>이메일</span>
+              <input
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+                className="w-full rounded-2xl border border-[#e6d3c0] bg-white/70 px-4 py-3 text-sm text-[#3a2d24] placeholder:text-[#b79f8b] focus:border-[#c08a5d] focus:outline-none"
+              />
+            </label>
+            <label className="space-y-2 text-sm text-[#5a4c40]">
+              <span>비밀번호</span>
+              <input
+                name="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                className="w-full rounded-2xl border border-[#e6d3c0] bg-white/70 px-4 py-3 text-sm text-[#3a2d24] placeholder:text-[#b79f8b] focus:border-[#c08a5d] focus:outline-none"
+              />
+            </label>
+          </div>
+
+          <div className="mt-8 space-y-3">
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? '로그인 중…' : '로그인'}
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              className="w-full"
+              onClick={() => navigate('/auth/join/type')}
+            >
+              회원가입
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              className="w-full border-white/20 bg-white/10 text-white hover:bg-white/20"
+              onClick={() => {
+                const target = `${API_URL}/oauth2/authorization/google`;
+                window.location.assign(target);
+              }}
+            >
+              구글 계정으로 로그인
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function OrderItemsModal({ orderId, onClose }) {
                 <td className="py-1">
                   <Link
                     to={`/product/${it.productId}`}
-                    className="text-blue-600 hover:underline"
+                    className="text-[#b36f3b] hover:underline"
                     onClick={onClose}
                   >
                     {it.productName}

@@ -7,21 +7,22 @@ export default function Button({
   ...props
 }) {
   const base =
-    'inline-flex items-center justify-center font-medium rounded-lg transition focus:outline-none focus:ring-2 focus:ring-offset-2';
+    'inline-flex items-center justify-center rounded-xl font-semibold tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-200 disabled:opacity-60';
 
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 disabled:bg-blue-300',
+      'bg-gradient-to-r from-[#f4c390] via-[#f2b774] to-[#e7a152] text-[#3a2f2b] hover:brightness-105',
     secondary:
-      'bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-400 disabled:bg-gray-200',
+      'border border-[#e3cfb5] bg-white/80 text-[#5c4f45] hover:bg-white',
+    ghost: 'text-[#5c4f45] hover:text-[#2f2a27] hover:bg-[#f8efe3]',
     danger:
-      'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 disabled:bg-red-300',
+      'bg-gradient-to-r from-[#d98a6b] to-[#c6674d] text-white hover:brightness-105',
   };
 
   const sizes = {
-    sm: 'px-3 py-1 text-sm',
-    md: 'px-4 py-2',
-    lg: 'px-6 py-3 text-lg',
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-6 py-3 text-base',
   };
 
   return (

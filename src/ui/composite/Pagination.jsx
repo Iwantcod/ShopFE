@@ -29,8 +29,8 @@ export default function Pagination({
 
   /* Tailwind 버튼 공통 스타일 */
   const baseBtn   =
-    'inline-flex h-8 w-8 items-center justify-center rounded-lg border text-sm transition';
-  const hoverCls  = 'hover:bg-primary/10 hover:text-primary';
+    'inline-flex h-8 w-8 items-center justify-center rounded-lg border border-[#eadbcc] text-sm transition text-[#8a6a52]';
+  const hoverCls  = 'hover:bg-[#f8efe4] hover:text-[#5b4333]';
   const disableCls = 'disabled:opacity-30 disabled:pointer-events-none';
 
   return (
@@ -56,7 +56,7 @@ export default function Pagination({
       </button>
 
       {/* 현재 페이지 표시 */}
-      <span className="inline-flex h-8 min-w-[40px] items-center justify-center rounded-lg bg-primary px-2 text-white">
+      <span className="inline-flex h-8 min-w-[40px] items-center justify-center rounded-lg bg-[#f4cfa7] px-2 text-[#4a3425]">
         {resolvedCurrent + 1}
       </span>
 

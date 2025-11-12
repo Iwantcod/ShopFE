@@ -8,7 +8,7 @@ export default function ProductCard({ p }) {
   return (
     <Link
       to={`/product/${p.productId}`}
-      className="flex flex-col gap-2 rounded-md bg-white p-4 shadow-card hover:ring-1 hover:ring-primary"
+      className="flex flex-col gap-2 rounded-md border border-[rgba(223,200,173,0.6)] bg-white/90 p-4 hover:border-[#d8a170]"
     >
       <img
         src={getImageUrl(p.productImageUrl)}
