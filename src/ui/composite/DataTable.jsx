@@ -7,7 +7,7 @@ export default function DataTable({
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm">
-        <thead className="bg-gray-100 dark:bg-gray-800">
+        <thead className="bg-[#f8efe4]">
           <tr>
             {columns.map((c) => (
               <th key={c.key} className="whitespace-nowrap px-3 py-2 text-left">
@@ -19,7 +19,7 @@ export default function DataTable({
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.id} className="border-b hover:bg-gray-50 dark:hover:bg-gray-700">
+            <tr key={row.id} className="border-b hover:bg-[#fdf6ed]">
               {columns.map((c) => (
                 <td key={c.key} className="px-3 py-2">
                   {c.render ? c.render(row) : row[c.key]}
@@ -28,7 +28,7 @@ export default function DataTable({
               {(onEdit || onDelete) && (
                 <td className="flex justify-end gap-2 px-3 py-2">
                   {onEdit && (
-                    <button onClick={() => onEdit(row)} className="text-blue-500">
+                    <button onClick={() => onEdit(row)} className="text-[#b36f3b]">
                       <FiEdit />
                     </button>
                   )}

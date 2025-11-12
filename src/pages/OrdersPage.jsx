@@ -70,7 +70,7 @@ export default function OrdersPage() {
               <td className="text-center">
                 <Button
                   size="xs"
-                  className="bg-blue-50 px-3 py-1 text-blue-600 hover:bg-blue-100"
+                  className="bg-[#f8ebe0] px-3 py-1 text-[#8a684f] hover:bg-[#f3dfcf]"
                   onClick={() => setDetailId(o.orderId)}
                 >
                   상세

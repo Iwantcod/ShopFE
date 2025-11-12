@@ -30,7 +30,7 @@ export default function TopBar() {
           if (onNavigate) onNavigate();
           openEstimateModal();
         }}
-        className="text-left font-medium hover:underline"
+        className="text-left font-medium text-[#b18ce0] hover:text-[#cba3f1]"
       >
         맞춤 견적
       </button>
@@ -63,15 +63,18 @@ export default function TopBar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white ring-1 ring-stone-100">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4">
+      <header className="sticky top-0 z-40 border-b border-[rgba(223,200,173,0.4)] bg-white/80 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
           {/* 로고 */}
-          <Link to="/" className="flex items-center gap-1 font-bold">
-            🖥️ <span className="hidden sm:inline">Shop</span>
+          <Link to="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-[#3d2f23]">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f2d9c5] via-[#f2c8a2] to-[#e7b17c] text-base">
+              ⚡
+            </span>
+            <span className="hidden sm:inline">Moduix</span>
           </Link>
 
           {/* ---------- 데스크톱 네비 ---------- */}
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-medium text-[#5d4e42] md:flex">
             {renderCommonLinks()}
             {extraLink}
           </nav>
@@ -92,7 +95,7 @@ export default function TopBar() {
           {/* ---------- 모바일 버거 아이콘 ---------- */}
           <button
             onClick={() => setOpen(true)}
-            className="rounded p-2 text-xl md:hidden"
+            className="rounded-xl border border-white/20 p-2 text-xl text-white md:hidden"
             aria-label="메뉴 열기"
           >
             ☰
@@ -112,14 +115,14 @@ export default function TopBar() {
 
             {/* 사이드 패널 */}
             <aside
-              className="relative h-full w-64 bg-white p-6 dark:bg-gray-800"
+              className="relative h-full w-64 border-l border-white/10 bg-slate-900/95 p-6 backdrop-blur"
               onClick={(e) => e.stopPropagation()}
             >
               <header className="mb-8 flex items-center justify-between">
-                <span className="text-lg font-semibold">메뉴</span>
+                <span className="text-lg font-semibold text-white">메뉴</span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-2xl leading-none"
+                  className="text-2xl leading-none text-white"
                   aria-label="메뉴 닫기"
                 >
                   ×
@@ -127,7 +130,7 @@ export default function TopBar() {
               </header>
 
               {/* 모바일 네비 */}
-              <nav className="flex flex-col gap-4 text-sm">
+              <nav className="flex flex-col gap-4 text-sm text-slate-200">
                 {renderCommonLinks(() => setOpen(false))}
                 {extraLink}
               </nav>

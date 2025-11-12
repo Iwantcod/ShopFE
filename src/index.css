@@ -3,24 +3,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 1) 전역 기본값 – 밝은 톤 */
+:root {
+  color-scheme: light;
+  --app-bg: #fdf8f1;
+  --app-bg-accent: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 55%),
+    radial-gradient(circle at 70% 0%, rgba(255, 235, 205, 0.6), transparent 45%);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --text-color: #1f1f1f;
+  --muted-color: #6b6b6b;
+  --accent: #c97a40;
+  --accent-strong: #a35c29;
+}
+
 body {
-  @apply min-h-screen w-full bg-stone-50 text-slate-800 antialiased;
-  /* margin:0 는 Tailwind Preflight가 이미 적용 */
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--app-bg);
+  background-image: var(--app-bg-accent);
+  color: var(--text-color);
+  font-family: 'Pretendard', 'Inter', 'SUIT', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 2) 다크모드 */
-.dark body {
-  @apply bg-gray-900 text-slate-200;
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 248, 232, 0.6));
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* 3) 전역 링크 스타일 (우리 primary 컬러 사용) */
 a {
-  @apply font-medium text-primary hover:text-primary-dark;
+  color: var(--accent);
+  font-weight: 500;
+  transition: color 150ms ease;
 }
 
-/* 4) 버튼 기본(리셋) – 실제 버튼 컴포넌트에 Tailwind 클래스로 일관 적용 */
+a:hover {
+  color: var(--accent-strong);
+}
+
 button {
-  font: inherit;            /* 모든 폰트 관련 속성 상속 */
-  @apply focus:outline-none;
+  font: inherit;
 }
