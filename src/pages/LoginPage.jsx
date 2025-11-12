@@ -36,10 +36,6 @@ export default function LoginPage() {
             <br />
             한 단계 더 매끄럽게.
           </h1>
-          <p className="mt-6 text-lg text-[#6f594a]">
-            최신 컴포넌트부터 맞춤 견적까지, 단 하나의 대시보드에서 바로 확인하세요. 깔끔한
-            인터페이스와 속도감 있는 경험을 제공합니다.
-          </p>
         </section>
         <form
           ref={formRef}
@@ -92,12 +88,15 @@ export default function LoginPage() {
             <Button
               type="button"
               variant="secondary"
-              className="w-full border-white/20 bg-white/10 text-white hover:bg-white/20"
+              className="w-full border-[#e3c7a6] bg-[#fff5ea] text-[#6b4c37] hover:bg-[#f7e5d1]"
               onClick={() => {
                 const target = `${API_URL}/oauth2/authorization/google`;
                 window.location.assign(target);
               }}
             >
+              <span className="mr-2 inline-flex items-center justify-center">
+                <img src="/googleIcon.png" alt="Google" className="h-5 w-5" />
+              </span>
               구글 계정으로 로그인
             </Button>
           </div>
